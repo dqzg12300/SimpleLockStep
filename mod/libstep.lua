@@ -41,5 +41,8 @@ function M.leave_room(room_id,uid)
     return call("scene_step.leave",room_id,uid)
 end
 
+function M.start_game(room_id,uid)
+    return call("scene_step.start_game",room_id,uid)
+end
 
 return M

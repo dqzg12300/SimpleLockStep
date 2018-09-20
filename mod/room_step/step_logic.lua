@@ -4,44 +4,30 @@
 --- DateTime: 2018/9/17 11:49
 ---
 
-local ROOM=class("STEP")
-local machine=require "statemachine"
-local timer=require "timer"
---状态机
-local fsm=nil
-local handler={}
-local t=nil
-local tidx=nil
+local M={}
 
-function ROOM:init_game()
-    t=timer:new()
-    t:init()
-    --这里初始化状态机
-    fsm=machine.create({
-        initial="none",
-        events={
-            {name="start",from="none",to="init_data"},
-        },
-        callbacks={
-            onstart=handler.onstart,
-        },
-    })
+local msg_queue={}
+local fid=1
+
+function M.init()
+    msg_queue={}
 end
 
---游戏开始初始化数据
-function handler.onstart()
-    INFO("game start")
+function M.push(msg)
+    table.insert(msg_queue,msg)
 end
 
-function ROOM:init_status()
-    fsm:none()
+function M.get_queue()
+    return msg_queue
 end
 
-function ROOM:start()
-    INFO("game full,pre start")
-    tidx=t:register(3,function()
-        fsm:start()
-    end)
+function M.clear()
+    msg_queue={}
+    fid=fid+1
 end
 
-return ROOM
+function M.getframeId()
+    return fid
+end
+
+return M

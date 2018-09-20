@@ -102,3 +102,21 @@ function M.kick_room()
     }
     return ack
 end
+
+function M.start_game()
+    INFO("agent leave_room")
+    if not lib then
+        INFO("start_game not found lib")
+        return {result=GAME_ERROR.no_login_desk}
+    end
+    if not room_id then
+        INFO("start_game not found room_id")
+        return {result=GAME_ERROR.no_login_desk}
+    end
+    local uid=env.get_player().uid
+    local ret=lib.start_game(room_id,uid)
+    local ack={
+        result=ret,
+    }
+    return ack
+end

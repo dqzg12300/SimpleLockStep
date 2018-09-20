@@ -21,7 +21,7 @@ local function get_room()
     end
 end
 
-function dispatch.create_room()
+function dispatch.create_room(uid)
     local room_id=get_room()
     if room_id then
         return room_id
@@ -32,7 +32,7 @@ function dispatch.create_room()
         addr=addr,
         count=0
     }
-    skynet.call(addr,"lua","room_step.start")
+    skynet.call(addr,"lua","room_step.start",uid)
     INFO("scene_step create_room room_id:"..room_id)
     return room_id
 end
@@ -57,4 +57,14 @@ function dispatch.leave_room(room_id,uid)
     end
     roomItem.count=roomItem.count-1
     return skynet.call(roomItem.addr,"lua","room_step.leave",uid)
+end
+
+function dispatch.start_game(room_id,uid)
+    INFO("scene_step start_game")
+    local roomItem=ROOM_MAP[room_id]
+    if not roomItem then
+        log.debug("enter_room not found room_id:%d",room_id)
+        return DESK_ERROR.room_not_found
+    end
+    return skynet.call(roomItem.addr,"lua","room_step.start_game",uid)
 end

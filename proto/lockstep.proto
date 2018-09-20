@@ -1,0 +1,22 @@
+syntax="proto2";
+
+package lockstep;
+
+//用户操作指令
+//0x00  无任何动作
+//0x01  方向上
+//0x02  方向下
+//0x03  方向左
+//0x04  方向右
+//0x05  开火
+message play_frame {
+    required int32 uid = 1;
+    required bytes cmd = 2;
+}
+
+message frame {
+    required uint32 frameId = 1;
+    required uint32 serverTime = 2;
+    required uint32 nextFrameId = 3;
+    repeated play_frame frameData = 4;
+}

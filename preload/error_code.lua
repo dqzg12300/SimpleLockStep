@@ -47,6 +47,7 @@ GAME_ERROR = {
 	desk_full = add{code = 0x0d07, desc = "游戏台已满"},
 	desk_no_player = add{code = 0x0d08, desc = "玩家不在游戏台"},
 	player_gaming = add{code = 0x0d09, desc = "玩家正在游戏"},
+	no_master_game = add{code = 0x0d10, desc = "非房主不能开局"},
 }
 
 DESK_ERROR = {

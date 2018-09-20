@@ -26,8 +26,8 @@ message enter_roomResult {
     required int32  room_id = 1;
     //创建的结果(0:成功 其他:失败)
     required int32  result = 2;
-
 }
+
 //离开桌子
 message leave_room {
 
@@ -36,6 +36,11 @@ message leave_room {
 message leave_roomResult {
     //创建的结果(0:成功 其他:失败)
     required int32  result = 1;
+
+}
+
+//请求开始游戏
+message start_game {
 
 }
 
@@ -57,3 +62,4 @@ message kickNty {
     required int32 result = 2;
     required int32 reason = 3;
 }
+

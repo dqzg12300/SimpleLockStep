@@ -10,7 +10,7 @@ return {
 	protopack = "pbc",   --pbc/json
 
     games_common = {
-		ddz = "libddz",
+		step = "libstep",
     },
 
 	--各个服务配置
@@ -70,7 +70,7 @@ return {
 		baseinfo = true,
 	},
 
-    ddz={
+    step={
 	    global={
 		    [1] = "scene1",
 	    },
