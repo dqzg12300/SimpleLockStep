@@ -33,7 +33,7 @@ function CMD.room_enter_roomResult(msg)
     print("enter_room room_id:"..msg.room_id.." result:"..msg.result)
     if msg.result==0 then
         print("enter room success")
-        --client.start_game()
+        client.start_game()
     else
         print("enter room err ")
     end
