@@ -1,0 +1,59 @@
+syntax="proto2";
+
+package room;
+
+//创建桌子
+message create_room {
+    //请求进入的游戏(ddz)
+    required string game = 1;
+    required string _cmd = 2;
+    required int32 _check = 3;
+}
+//创建桌子回包
+message create_roomResult {
+    required int32 room_id  = 1;
+    required int32 result   = 2;
+    required string _cmd = 3;
+    required int32 _check = 4;
+}
+//进入桌子
+message enter_room {
+    required int32  room_id = 1;
+    required string game    = 2;
+}
+//进入桌子回包
+message enter_roomResult {
+    required int32  room_id = 1;
+    //创建的结果(0:成功 其他:失败)
+    required int32  result = 2;
+
+}
+//离开桌子
+message leave_room {
+
+}
+//离开桌子回包
+message leave_roomResult {
+    //创建的结果(0:成功 其他:失败)
+    required int32  result = 1;
+
+}
+
+//玩家的数据结构
+message player_item {
+    required int32 uid = 1;
+    required string username = 2;
+}
+
+//服务端推送桌子玩家数据
+message flush_userdataNty {
+    repeated player_item data = 1;
+}
+
+
+//踢出的通知
+message kickNty {
+    required int32 uid    = 1;
+    required int32 result = 2;
+    required int32 reason = 3;
+}

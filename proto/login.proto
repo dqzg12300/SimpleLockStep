@@ -1,0 +1,16 @@
+syntax="proto2";
+
+package login;
+
+message login {
+    required string username = 1;
+    required string password = 2;
+    required int32 sdkid = 3;   //1 内部登陆 2 接外部登陆
+    optional string openId = 4 [default=""];
+}
+
+message loginResult {
+    optional uint32 uid = 1;
+    required string username = 2;
+    required int32  result = 3;
+}
