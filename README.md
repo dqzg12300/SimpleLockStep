@@ -31,3 +31,8 @@ https://github.com/zhanjunxiong/RillServer
 这种情况需要是没有安装protobuf或者是没有加入到环境变量  
 可以临时加下export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib  
 或者自行加到bash_profile中
+
+## 说明
+主要逻辑在mod/room_step/room_step_logic.lua中  
+如果是直接用test里面的2-create_room测试可以去调整定时器的时间长一点,方便看效果
+t:init(300,update_step,true) 第一个参数是定时器的时间,300是3秒。如果是1秒25次的话可以调整为4来测试
