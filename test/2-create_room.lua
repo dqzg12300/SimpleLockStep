@@ -8,10 +8,12 @@ local client=require "tcpclient"
 
 local Hander={}
 local CMD={}
+local uid=nil
 
 function CMD.login_loginResult(msg)
     if msg.result==0 then
         print("account:"..msg.username.." success")
+        uid=msg.uid
         client.create_room("step")
     else
         print("account:"..msg.username..",login err:",msg.result)
@@ -56,6 +58,11 @@ function CMD.room_flush_userdataNty(msg)
     for i,v in pairs(msg.data) do
         print("player uid:"..v.uid..",username:"..v.username)
     end
+end
+
+function CMD.lockstep_frame()
+    print("lock_step frame")
+    client.frame(uid,0x01)
 end
 
 function Hander.CallBack(cmd,check,msg)

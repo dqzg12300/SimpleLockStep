@@ -75,16 +75,25 @@ function M.enter_room(msg)
     return ack
 end
 
+local function check()
+    if not lib then
+        INFO("not found lib")
+        return false,{result=GAME_ERROR.no_login_desk}
+    end
+    if not room_id then
+        INFO("not found room_id")
+        return false,{result=GAME_ERROR.no_login_desk}
+    end
+    return true
+end
+
+
 --离开房间逻辑
 function M.leave_room(msg)
     INFO("agent leave_room")
-    if not lib then
-        INFO("leave_room not found lib")
-        return {result=0}
-    end
-    if not room_id then
-        INFO("leave_room not found room_id")
-        return {result=0}
+    local isok,result=check()
+    if not isok then
+        return result
     end
     local uid=env.get_player().uid
     local ret=lib.leave_room(room_id,uid)
@@ -96,6 +105,7 @@ end
 
 --踢出房间逻辑
 function M.kick_room()
+    INFO("agent kick_room")
     local ret=M.leave_room()
     local ack={
         result=ret,
@@ -105,13 +115,9 @@ end
 
 function M.start_game()
     INFO("agent leave_room")
-    if not lib then
-        INFO("start_game not found lib")
-        return {result=GAME_ERROR.no_login_desk}
-    end
-    if not room_id then
-        INFO("start_game not found room_id")
-        return {result=GAME_ERROR.no_login_desk}
+    local isok,result=check()
+    if not isok then
+        return result
     end
     local uid=env.get_player().uid
     local ret=lib.start_game(room_id,uid)
@@ -119,4 +125,16 @@ function M.start_game()
         result=ret,
     }
     return ack
+end
+
+function M.play_frame(msg)
+    INFO("agent frame")
+    local isok,result=check()
+    if not isok then
+        return result
+    end
+    local uid=env.get_player().uid
+    --不需要回包.60毫秒后统一广播的
+    lib.frame(room_id,msg)
+    return nil
 end

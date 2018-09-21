@@ -1,5 +1,5 @@
 
-Ý
+‰
 
 room.protoroom"K
 create_room
@@ -23,7 +23,9 @@ leave_room"*
 leave_roomResult
 result (Rresult"
 
-start_game";
+start_game"*
+start_gameResult
+result (Rresult";
 player_item
 uid (Ruid
 username (	Rusername":

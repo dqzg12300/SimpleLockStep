@@ -68,3 +68,13 @@ function dispatch.start_game(room_id,uid)
     end
     return skynet.call(roomItem.addr,"lua","room_step.start_game",uid)
 end
+
+function dispatch.frame(room_id,msg)
+    INFO("frame start_game")
+    local roomItem=ROOM_MAP[room_id]
+    if not roomItem then
+        log.debug("enter_room not found room_id:%d",room_id)
+        return DESK_ERROR.room_not_found
+    end
+    return skynet.call(roomItem.addr,"lua","room_step.frame",msg)
+end

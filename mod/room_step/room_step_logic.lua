@@ -118,6 +118,7 @@ end
 
 function ROOM:frame(msg)
     logic.push(msg)
+    return SYSTEM_ERROR.success
 end
 
 return ROOM

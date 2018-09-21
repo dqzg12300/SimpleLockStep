@@ -45,4 +45,8 @@ function M.start_game(room_id,uid)
     return call("scene_step.start_game",room_id,uid)
 end
 
+function M.frame(msg)
+    return call("scene_step.frame",msg)
+end
+
 return M

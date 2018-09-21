@@ -11,7 +11,7 @@ package lockstep;
 //0x05  开火
 message play_frame {
     required int32 uid = 1;
-    required bytes cmd = 2;
+    required int32 cmd = 2;
 }
 
 message frame {

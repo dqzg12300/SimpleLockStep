@@ -31,3 +31,7 @@ end
 function dispatch.start_game(uid)
     return ROOM:start_game(uid)
 end
+
+function dispatch.frame(msg)
+    return ROOM:frame(msg)
+end

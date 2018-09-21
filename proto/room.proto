@@ -44,6 +44,10 @@ message start_game {
 
 }
 
+message start_gameResult {
+    required int32  result = 1;
+}
+
 //玩家的数据结构
 message player_item {
     required int32 uid = 1;

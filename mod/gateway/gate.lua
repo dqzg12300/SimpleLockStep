@@ -22,7 +22,9 @@ local function close_agent(fd)
             --todo中心服退出,agentpool回收
         end
         INFO(inspect(c))
-        libagentpool.recycle(c.agent)
+        if c.agent then
+            libagentpool.recycle(c.agent)
+        end
         gateserver.closeclient(fd)
         connect[fd]=nil
     end

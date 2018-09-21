@@ -68,7 +68,7 @@ end
 local function default_dispatch(cmd,msg)
     local f=env.dispatch[cmd]
     if type(f)~="function" then
-        log.wran("agent default_dispatch cmd:%s not found",cmd)
+        log.error("agent default_dispatch cmd:%s not found",cmd)
         return
     end
 

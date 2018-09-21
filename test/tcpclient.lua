@@ -140,4 +140,8 @@ function M.start_game()
     M.send("room.start_game",{})
 end
 
+function M.frame(uid,cmd)
+    M.send("lockstep.play_frame",{uid=uid,cmd=cmd})
+end
+
 return M
